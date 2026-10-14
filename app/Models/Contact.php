@@ -14,6 +14,8 @@ class Contact extends Model
         'email',
         'phone',
         'subject',
+        'business_type',
+        'service_required',
         'message',
         'is_read',
     ];

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <style>
         body.login-page {
-            background: linear-gradient(135deg, #6366f1 0%, #ec4899);
+            background: radial-gradient(ellipse at top left, rgba(59, 130, 246, .18), transparent 45%), linear-gradient(135deg, #0b1220 0%, #111c32 100%);
             height: 100vh;
         }
 

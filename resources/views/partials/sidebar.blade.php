@@ -18,7 +18,7 @@
                 <small class="text-muted">
                     @if(Auth::check())
                     @if(Auth::user()->role === \App\Models\User::ROLE_ADMIN)
-                    <span class="badge badge-success badge-sm">Admin</span>
+                     <span class="badge badge-success badge-sm">Admin</span>
                     @elseif(Auth::user()->role === \App\Models\User::ROLE_AGENT)
                     <span class="badge badge-info badge-sm">Agent</span>
                     @else
@@ -118,6 +118,14 @@
                     <a href="{{ route('post.index') }}" class="nav-link {{ request()->routeIs('post.*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>Posts</p>
+                    </a>
+                </li>
+
+                {{-- Process --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.process.index') }}" class="nav-link {{ request()->routeIs('process.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tools"></i>
+                        <p>Process</p>
                     </a>
                 </li>
 

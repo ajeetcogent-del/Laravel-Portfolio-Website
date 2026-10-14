@@ -21,7 +21,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-7">
+            <div class="col-md-12">
                 <div class="card card-outline card-warning">
                     <div class="card-header">
                         <h3 class="card-title">Edit: {{ $skill->name }}</h3>

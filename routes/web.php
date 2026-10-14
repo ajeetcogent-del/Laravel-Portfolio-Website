@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialControll
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\SkillController as AdminSkillController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\Admin\ProcessController as AdminProcessController;
 use App\Http\Controllers\PortfolioController;
 use App\Models\User;
 use App\Http\Controllers\PostController;
@@ -52,6 +53,14 @@ Route::middleware(['auth', 'role:' . User::ROLE_ADMIN])->prefix('admin')->name('
     Route::delete('contacts/{contact}', [AdminContactController::class, 'destroy'])->name('contacts.destroy');
     Route::resource('skills', AdminSkillController::class)->except(['show']);
     Route::resource('services', AdminServiceController::class)->except(['show']);
+
+    //DevelopementProcess
+     Route::get('process', [AdminProcessController::class, 'index'])->name('process.index');
+     Route::get('process/create', [AdminProcessController::class, 'create'])->name('process.create');
+     Route::post('process/store', [AdminProcessController::class, 'store'])->name('process.store');
+     Route::get('process/edit/{id}', [AdminProcessController::class, 'edit'])->name('process.edit');
+     Route::put('process/update/{id}', [AdminProcessController::class, 'update'])->name('process.update');
+     Route::delete('process/delete/{id}', [AdminProcessController::class, 'destroy'])->name('process.destroy');
 });
 
 // ─── Agent Routes ─────────────────────────────────────────────────────────────

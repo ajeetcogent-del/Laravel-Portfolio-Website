@@ -60,6 +60,18 @@
                                 <td>{{ $contact->subject }}</td>
                             </tr>
                             @endif
+                            @if($contact->business_type)
+                            <tr>
+                                <th>Business Type</th>
+                                <td>{{ $contact->business_type }}</td>
+                            </tr>
+                            @endif
+                            @if($contact->service_required)
+                            <tr>
+                                <th>Service Required</th>
+                                <td>{{ $contact->service_required }}</td>
+                            </tr>
+                            @endif
                             <tr>
                                 <th>Received</th>
                                 <td>{{ $contact->created_at->format('d M Y, h:i A') }} ({{ $contact->created_at->diffForHumans() }})</td>

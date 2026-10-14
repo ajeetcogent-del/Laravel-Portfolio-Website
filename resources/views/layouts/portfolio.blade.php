@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@yield('meta_description', 'Ajeet Chaubey – Laravel Backend Developer. Building scalable Laravel applications, secure REST APIs and modern business websites.')">
-    <meta name="keywords" content="Laravel Developer, PHP Developer, Backend Developer, REST API, MySQL, Ajeet Chaubey">
+    <meta name="description" content="@yield('meta_description', 'Ajeet Chaubey provides website design, local SEO, AI automation, and digital services for service businesses.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'Ajeet Chaubey, website design, local SEO, AI automation, digital services')">
     <meta name="author" content="Ajeet Chaubey">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="@yield('title', 'Ajeet Chaubey | Laravel Backend Developer')">
-    <meta property="og:description" content="@yield('meta_description', 'Building scalable Laravel applications, secure REST APIs and modern business websites.')">
+    <meta property="og:title" content="@yield('title', 'Ajeet Chaubey | Digital Services')">
+    <meta property="og:description" content="@yield('meta_description', 'Ajeet Chaubey provides website design, local SEO, AI automation, and digital services for service businesses.')">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
 
-    <title>@yield('title', 'Ajeet Chaubey | Laravel Backend Developer')</title>
+    <title>@yield('title', 'Ajeet Chaubey | Digital Services')</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
@@ -43,9 +43,7 @@
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}#services" class="hover-underline">Services</a></li>
                 <li><a href="{{ route('home') }}#projects" class="hover-underline">Projects</a></li>
-                <li><a href="{{ route('home') }}#skills" class="hover-underline">Skills</a></li>
                 <li><a href="{{ route('home') }}#process" class="hover-underline">Process</a></li>
-                <li><a href="{{ route('home') }}#testimonials" class="hover-underline">Reviews</a></li>
                 <li><a href="{{ route('home') }}#contact" class="hover-underline">Contact</a></li>
             </ul>
 
@@ -53,7 +51,7 @@
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle dark/light mode">
                     <i class="fas fa-moon" id="themeIcon"></i>
                 </button>
-                <a href="{{ route('home') }}#contact" class="nav-hire">Hire Me</a>
+                <a href="{{ route('home') }}#contact" class="nav-hire">Discuss Your Project</a>
                 <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
                     <span></span><span></span><span></span>
                 </button>
@@ -65,9 +63,7 @@
     <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
         <a href="{{ route('home') }}#services" onclick="closeMobile()">Services</a>
         <a href="{{ route('home') }}#projects" onclick="closeMobile()">Projects</a>
-        <a href="{{ route('home') }}#skills" onclick="closeMobile()">Skills</a>
         <a href="{{ route('home') }}#process" onclick="closeMobile()">Process</a>
-        <a href="{{ route('home') }}#testimonials" onclick="closeMobile()">Reviews</a>
         <a href="{{ route('home') }}#contact" onclick="closeMobile()">Contact</a>
         @auth
         <a href="{{ route('admin.dashboard') }}" onclick="closeMobile()">
@@ -84,7 +80,7 @@
         <div class="container footer-inner">
             <a href="{{ route('home') }}" class="footer-logo">AC<span>.</span></a>
             <p class="footer-copy">
-                &copy; {{ date('Y') }} Ajeet Chaubey. Built with <i class="fas fa-heart" style="color:var(--danger)"></i> using Laravel.
+                &copy; {{ date('Y') }} Ajeet Chaubey. Digital services for growing businesses.
             </p>
             <div class="footer-links">
                 <a href="https://github.com/ajeet" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -160,6 +156,29 @@
         });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ── Contact form validation ─────────────────
+        const contactForm = document.getElementById('contactForm');
+        const contactSubmitButton = document.getElementById('contactSubmitButton');
+
+        if (contactForm && contactSubmitButton) {
+            const setButtonState = (isSubmitting) => {
+                contactSubmitButton.disabled = isSubmitting;
+                contactSubmitButton.innerHTML = isSubmitting
+                    ? '<i class="fas fa-spinner fa-spin"></i> Sending...'
+                    : '<i class="fas fa-paper-plane"></i> Send Message';
+            };
+
+            contactForm.addEventListener('submit', function (event) {
+                if (!contactForm.checkValidity()) {
+                    event.preventDefault();
+                    contactForm.reportValidity();
+                    return;
+                }
+
+                setButtonState(true);
+            });
+        }
 
         // ── Active nav link ───────────────────
         const sections = document.querySelectorAll('section[id]');

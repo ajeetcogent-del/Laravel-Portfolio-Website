@@ -21,7 +21,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card card-outline card-warning">
                     <div class="card-header">
                         <h3 class="card-title">Edit: {{ $service->title }}</h3>
@@ -35,6 +35,7 @@
                                 <input type="text" name="title"
                                     class="form-control @error('title') is-invalid @enderror"
                                     value="{{ old('title', $service->title) }}" required>
+                                <small class="form-text text-muted">This title appears on the homepage service card.</small>
                                 @error('title')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
 
@@ -43,11 +44,12 @@
                                 <textarea name="description" rows="4"
                                     class="form-control @error('description') is-invalid @enderror"
                                     required>{{ old('description', $service->description) }}</textarea>
+                                <small class="form-text text-muted">Keep this concise; it appears below the title on the homepage.</small>
                                 @error('description')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
 
                             <div class="form-group">
-                                <label>Icon Class</label>
+                                <label>Icon Class <small class="text-muted">(optional, Font Awesome)</small></label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -57,6 +59,18 @@
                                     <input type="text" name="icon" class="form-control"
                                         value="{{ old('icon', $service->icon) }}"
                                         oninput="document.getElementById('iconPreview').className = this.value || 'fas fa-cog'">
+                                </div>
+                                <small class="form-text text-muted">This icon appears above the service title. Choose a suggested icon or enter a Font Awesome class.</small>
+                                <div class="mt-2 d-flex flex-wrap gap-2">
+                                    @foreach([
+                                    ['fas fa-laptop','Website'], ['fas fa-map-marker-alt','Local SEO'],
+                                    ['fas fa-robot','Automation'], ['fas fa-bullhorn','Social media'],
+                                    ] as [$ico, $lbl])
+                                    <button type="button" class="btn btn-sm btn-light border"
+                                        onclick="document.querySelector('[name=icon]').value='{{ $ico }}'; document.getElementById('iconPreview').className='{{ $ico }}'">
+                                        <i class="{{ $ico }} mr-1"></i>{{ $lbl }}
+                                    </button>
+                                    @endforeach
                                 </div>
                             </div>
 

@@ -21,7 +21,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Service Details</h3>
@@ -35,8 +35,9 @@
                                 <input type="text" name="title"
                                     class="form-control @error('title') is-invalid @enderror"
                                     value="{{ old('title') }}"
-                                    placeholder="e.g. Laravel Web Application Development"
+                                    placeholder="e.g. Website Design & Redesign"
                                     required>
+                                <small class="form-text text-muted">This title appears on the homepage service card.</small>
                                 @error('title')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
 
@@ -44,13 +45,14 @@
                                 <label>Description <span class="text-danger">*</span></label>
                                 <textarea name="description" rows="4"
                                     class="form-control @error('description') is-invalid @enderror"
-                                    placeholder="Describe what this service includes..."
+                                    placeholder="Briefly explain how this service helps a business."
                                     required>{{ old('description') }}</textarea>
+                                <small class="form-text text-muted">Keep this concise; it appears below the title on the homepage.</small>
                                 @error('description')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>
 
                             <div class="form-group">
-                                <label>Icon Class <small class="text-muted">(Font Awesome)</small></label>
+                                <label>Icon Class <small class="text-muted">(optional, Font Awesome)</small></label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -59,15 +61,14 @@
                                     </div>
                                     <input type="text" name="icon" class="form-control"
                                         value="{{ old('icon', 'fas fa-cog') }}"
-                                        placeholder="fas fa-code"
+                                        placeholder="fas fa-laptop"
                                         oninput="document.getElementById('iconPreview').className = this.value || 'fas fa-cog'">
                                 </div>
+                                <small class="form-text text-muted">This icon appears above the service title. Choose a suggested icon or enter a Font Awesome class.</small>
                                 <div class="mt-2 d-flex flex-wrap gap-2">
                                     @foreach([
-                                    ['fas fa-layer-group','Web App'], ['fas fa-exchange-alt','Migration'],
-                                    ['fas fa-project-diagram','API'], ['fas fa-bug','Debugging'],
-                                    ['fas fa-server','Server'], ['fas fa-database','Database'],
-                                    ['fas fa-shield-alt','Security'], ['fas fa-mobile-alt','Mobile'],
+                                    ['fas fa-laptop','Website'], ['fas fa-map-marker-alt','Local SEO'],
+                                    ['fas fa-robot','Automation'], ['fas fa-bullhorn','Social media'],
                                     ] as [$ico, $lbl])
                                     <button type="button" class="btn btn-sm btn-light border"
                                         onclick="document.querySelector('[name=icon]').value='{{ $ico }}'; document.getElementById('iconPreview').className='{{ $ico }}'">
